@@ -6,7 +6,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-Hardcoded Token and Owner ID
+#Hardcoded Token and Owner ID
 
 BOT_TOKEN = "7312643382:AAGpdhy5Bpcd032gbCvdnXf9AvOYR3rkm08"
 OWNER_ID = 5879359815
