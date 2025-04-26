@@ -17,14 +17,16 @@ def generate_key(): return ''.join(random.choices(string.ascii_uppercase + strin
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE): await update.message.reply_text("WELCOME TO THE BOT!", parse_mode=ParseMode.MARKDOWN)
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE): help_text = """ Available Commands:
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE): help_text = """Available Commands:
 
-/destroy [ip] [port] - Start attack with a specific time (buttons appear for time)
+/destroy [ip] [port] - Start attack with a specific time
 /genkey - Generate redeem key (Owner only)
 /redeem [key] - Redeem key for access
 /ping - Check bot speed
-/broadcast [message] - Owner only """ await update.message.reply_text(help_text, parse_mode=ParseMode.MARKDOWN)
-
+/broadcast [message] - Owner only
+"""
+await update.message.reply_text(
+    help_text, parse_mode=ParseMode.MARKDOWN)
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE): start_time = time.time() await update.message.reply_text("Pinging...") end_time = time.time() latency = (end_time - start_time) * 1000 await update.message.reply_text(f"Bot speed: {int(latency)} ms")
 
 async def genkey(update: Update, context: ContextTypes.DEFAULT_TYPE): if update.effective_user.id != OWNER_ID: await update.message.reply_text("Only owner can generate keys.") return key = generate_key() REDEEM_KEYS.add(key) await update.message.reply_text(f"Generated Key: {key}", parse_mode=ParseMode.MARKDOWN)
